@@ -1,0 +1,217 @@
+%
+%
+% AIC予稿スタイルファイル
+% 2022 Takanori Uchiyama
+%
+\renewcommand{\normalsize}{%
+  \@setfontsize\normalsize\@ixpt{14.2}}
+\renewcommand{\large}{%
+  \@setfontsize\large\@xpt{15}}
+\renewcommand{\Large}{%
+  \@setfontsize\Large\@xiipt{14}}
+\renewcommand{\LARGE}{%
+  \@setfontsize\LARGE\@xivpt{18}}
+%
+\if@titlepage
+  \renewcommand{\maketitle}{\begin{titlepage}%
+  \let\footnotesize\small
+  \let\footnoterule\relax
+  \let\footnote\thanks
+  \null\vfil
+  \vskip 60\p@
+  \begin{center}%
+    {\LARGE\bfseries \@title \par}%
+    \vskip 2em%
+    {\large\@author \par}%      
+    {\normalsize\@affiriation}%	
+    \vskip 1em%
+  \end{center}\par
+  \@thanks\vfil\null
+  \end{titlepage}%
+  \setcounter{footnote}{0}%
+  \global\let\thanks\relax
+  \global\let\maketitle\relax
+  \global\let\p@thanks\relax
+  \global\let\@thanks\@empty
+  \global\let\@author\@empty
+  \global\let\@title\@empty
+  \global\let\title\relax
+  \global\let\affiriation\relax
+  \global\let\author\relax
+  \global\let\and\relax
+  }%
+\else
+  \renewcommand{\maketitle}{\par
+  \begingroup
+    \renewcommand{\thefootnote}{\fnsymbol{footnote}}%
+    \def\@makefnmark{\hbox{\ifydir $\m@th^{\@thefnmark}$
+      \else\hbox{\yoko$\m@th^{\@thefnmark}$}\fi}}%
+     \long\def\@makefntext##1{\parindent 1em\noindent
+       \hbox to1.8em{\hss$\m@th^{\@thefnmark}$}##1}%
+    \if@twocolumn
+      \ifnum \col@number=\@ne \@maketitle
+      \else \twocolumn[\@maketitle]%
+      \fi
+    \else
+      \newpage
+      \global\@topnum\z@   % Prevents figures from going at top of page.
+      \@maketitle
+    \fi
+%     \thispagestyle{jpl@in}\@thanks
+     \thispagestyle{empty}\@thanks
+  \endgroup
+  \setcounter{footnote}{0}%
+  \global\let\thanks\relax
+  \global\let\maketitle\relax
+  \global\let\p@thanks\relax
+  \global\let\@thanks\@empty
+  \global\let\@author\@empty
+  \global\let\@title\@empty
+  \global\let\@keywords\@empty
+  \global\let\title\relax
+  \global\let\affiriation\relax
+  \global\let\author\relax
+  \global\let\keywords\relax
+  \global\let\and\relax
+  }
+  \def\@maketitle{%
+  \newpage\null
+  \vspace{-5mm}%
+  \begin{center}%
+  \let\footnote\thanks
+    {\LARGE\bfseries \@title \par}%
+    \vskip .3em%
+    {\large\@author \par}%      
+    {\normalsize\@affiriation}%	
+  \end{center}%
+%%%%%%%%%%%%%%%%
+  \@ifundefined{@abst}{}{%
+    %\begin{quotation}  \vspace{-1.0em}
+    \vspace{-0.5em}
+    \noindent{\sffamily\abstractname}\ \baselineskip 13.5pt \@abst %\end{quotation}
+%    \vskip .3em
+    \gdef\@abst{}}
+%%%%%%%%%%%%%%%%
+  %\begin{quotation} \vspace{-1.0em}
+  \\%\vspace{-1.0em}
+  {\noindent{\normalsize\sffamily\keywordsname} \@keywords}\\
+  %\end{quotation}
+%  \vskip .9em%
+  \par
+  }
+\fi
+\long\def\abst#1{\long\gdef\@abst{#1}}
+\def\title#1{\gdef\@title{#1}}
+\def\@title{\@latex@error{No \noexpand\title given}\@ehc}
+\def\affiriation#1{\gdef\@affiriation{#1}}
+\def\@affiriation{\@latex@warning@no@line{No \noexpand\affiriation given}}
+\def\author#1{\gdef\@author{#1}}
+\def\@author{\@latex@warning@no@line{No \noexpand\name given}}
+\def\keywords#1{\gdef\@keywords{#1}}
+\def\@keywords{\@latex@warning@no@line{No \noexpand\keywords given}}
+
+\renewcommand{\refname}{参考文献}
+\renewcommand{\indexname}{索 引}
+\renewcommand{\figurename}{Fig. }
+\renewcommand{\tablename}{Table }
+\renewcommand{\abstractname}{Abstract: }
+\newcommand{\keywordsname}{Keywords: }
+%
+% 節の行どりを変更
+%
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+%   {1.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+%   {.5\Cvs \@plus.3\Cdp}%
+   {1\Cvs \@plus.1\Cdp \@minus.1\Cdp}%
+   {.1\Cvs \@plus.1\Cdp}%
+   {\reset@font\normalsize\sffamily\gtfamily}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+%   {1.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+%   {.5\Cvs \@plus.3\Cdp}%
+   {1\Cvs \@plus.1\Cdp \@minus.1\Cdp}%
+   {.1\Cvs \@plus.1\Cdp}%
+   {\reset@font\normalsize\sffamily\gtfamily}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+%   {1.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+%   {.5\Cvs \@plus.3\Cdp}%
+   {1\Cvs \@plus.1\Cdp \@minus.1\Cdp}%
+   {.1\Cvs \@plus.1\Cdp}%
+   {\reset@font\normalsize\sffamily\gtfamily}}
+%
+%
+% キャプションから : を消す
+%
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \iftdir\sbox\@tempboxa{#1\hskip1zw#2}%
+    \else\sbox\@tempboxa{#1 #2}%
+  \fi
+  \ifdim \wd\@tempboxa >\hsize
+    \iftdir #1\hskip1zw#2\relax\par
+      \else #1 #2\relax\par\fi
+  \else
+    \global \@minipagefalse
+    \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+%
+%
+%
+\def\thepart{\Roman{part}} \def\thesection {\arabic{section}.}
+\def\thesubsection {\thesection\arabic{subsection}}
+\def\thesubsubsection {\thesubsection.\arabic{subsubsection}}
+\def\theparagraph {\thesubsubsection.\arabic{paragraph}}
+\def\thesubparagraph {\theparagraph.\arabic{subparagraph}}
+%
+% 節の後ろの空白を半角幅
+%
+\def\@seccntformat#1{\csname the#1\endcsname\hskip .5zw}
+%
+%
+% 図と表のキャプションの余白
+\setlength\belowcaptionskip{5\p@}
+\setlength\abovecaptionskip{0\p@}
+%
+%
+% 図の上下の余白
+\setlength\intextsep{0pt}
+\setlength\textfloatsep{0pt}
+%
+%
+% 参考文献の行間
+
+\renewenvironment{thebibliography}[1]
+{\section*{\refname\@mkboth{\refname}{\refname}}%
+  \list{\@biblabel{\@arabic\c@enumiv}}%
+       {\settowidth\labelwidth{\@biblabel{#1}}%
+        \leftmargin\labelwidth
+        \advance\leftmargin\labelsep
+ \setlength\itemsep{0.0zh}%
+ \setlength\baselineskip{12pt}%
+        \@openbib@code
+        \usecounter{enumiv}%
+        \let\p@enumiv\@empty
+        \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+  \sloppy
+  \clubpenalty4000
+  \@clubpenalty\clubpenalty
+  \widowpenalty4000%
+  \sfcode`\.\@m}
+ {\def\@noitemerr
+   {\@latex@warning{Empty `thebibliography' environment}}%
+  \endlist}
+%
+%
+\oddsidemargin -5.4mm   %左マージン 20mm = 25.4 - 5.4
+\evensidemargin -5.4mm
+\textwidth 170mm        %右マージン 20mm, 170 = 210 - 40 
+\topmargin -5.4mm        %上マージン 20mm = 25.4 - 6.4
+\headheight 0pt
+\headsep 0pt
+\textheight 257mm       %上マージン 20mm, 下マージン20mm, 257 = 297 -
+                        %40
+\columnsep 10mm
+\pagestyle{empty}
+
+
+
